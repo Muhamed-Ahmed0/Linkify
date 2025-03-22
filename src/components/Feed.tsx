@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import { auth } from "@clerk/nextjs/server";
-const Feed = async ({ userProfileId }: { userProfileId: string }) => {
+const Feed = async () => {
   const { userId } = await auth();
   if (!userId) return;
 

@@ -1,6 +1,5 @@
 import Feed from "@/components/Feed";
 import Image from "@/components/Image";
-import { prisma } from "@/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -10,13 +9,6 @@ const UserPage = async ({
 }: {
   params: Promise<{ username: string }>;
 }) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      username: (await params).username,
-    },
-  });
-  console.log(params);
-  if (!user) return notFound();
   return (
     <div>
       {/* Title */}
@@ -104,8 +96,6 @@ const UserPage = async ({
           </div>
         </div>
       </div>
-      {/* Feed */}
-      <Feed userProfileId={user.id} />
     </div>
   );
 };
